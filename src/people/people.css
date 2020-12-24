@@ -11,6 +11,20 @@
     background-color: #ffffff;
 }
 
+#primary_content .maintitle {
+    display: block;
+    background-color: #3D963A;
+    color: #ffffff;
+
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 400;
+
+    margin: 3px;
+    text-indent:10px;
+}
+
 #primary_content .subtitle {
     font-size: 13px;
     font-weight: 600;
@@ -44,7 +58,7 @@
 }
 
 #primary_content .people_content .people_content_title {
-    font-size: 13px;
+    font-size: 10px;
 }
 
 #primary_content .people_content strong {
@@ -58,6 +72,10 @@
 #primary_content .people_content .people_content_homepage {
     text-decoration: none;
     color: #000000;
+}
+
+#primary_content .people_content .people_content_email {
+    display: inline;
 }
 
 #primary_content .people_content .people_content_interest {

@@ -7,3 +7,11 @@ export function get_faculty_list() {
 
     return request
 }
+
+export function get_administrative_list() {
+    const request = axios({
+        url: './data/administrative.csv'
+    })
+
+    return request
+}
