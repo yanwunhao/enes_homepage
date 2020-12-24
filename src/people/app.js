@@ -42,7 +42,9 @@ faculty_request.then(response => {
         item_container.title = details[2].split('/')
         item_container.position = details[3]
         item_container.email = details[4]
-        item_container.interest = details[5].split('/')
+
+        const reg = new RegExp('/', 'g')
+        item_container.interest = details[5].replace(reg, ',')
 
         let people_item = pb.people_item_factory()
 
@@ -68,7 +70,7 @@ faculty_request.then(response => {
 
         people_content.appendChild(pb.strong_factory('Research Interests:'))
         people_content.appendChild(pb.paragraph_factory('', 'peopel_content_segment'))
-        item_container.interest.forEach(item => { people_content.appendChild(pb.paragraph_factory(item + ', ', 'people_content_interest')) })
+        people_content.appendChild(pb.paragraph_factory(item_container.interest, 'people_content_interest'))
 
         people_item.appendChild(people_content)
 
