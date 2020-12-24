@@ -38,7 +38,7 @@ faculty_request.then(response => {
         const details = datalist[i].split(',')
 
         item_container.id = details[0]
-        item_container.name = details[1].toString()
+        item_container.name = details[1]
         item_container.title = details[2].split('/')
         item_container.position = details[3]
         item_container.email = details[4]
@@ -54,16 +54,21 @@ faculty_request.then(response => {
 
         people_content.appendChild(pb.paragraph_factory(item_container.name, 'people_content_name'))
 
-        item_container.title.forEach(item => { people_content.appendChild(paragraph_factory(item, 'people_content_title')) })
+        item_container.title.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
         people_content.appendChild(pb.strong_factory('Position:'))
         people_content.appendChild(pb.paragraph_factory(item_container.position, 'people_content_position'))
 
+        people_content.appendChild(pb.paragraph_factory('', 'peopel_content_segment'))
+
         people_content.appendChild(pb.strong_factory('Homepage:'))
-        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, ''))
+        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
+
+        people_content.appendChild(pb.paragraph_factory('', 'peopel_content_segment'))
 
         people_content.appendChild(pb.strong_factory('Research Interests:'))
-        item_container.interest.forEach(item => { people_content.appendChild(paragraph_factory(item, 'people_content_interest')) })
+        people_content.appendChild(pb.paragraph_factory('', 'peopel_content_segment'))
+        item_container.interest.forEach(item => { people_content.appendChild(pb.paragraph_factory(item + ', ', 'people_content_interest')) })
 
         people_item.appendChild(people_content)
 

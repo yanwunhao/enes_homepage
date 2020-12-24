@@ -11,16 +11,55 @@
     background-color: #ffffff;
 }
 
+#primary_content .subtitle {
+    font-size: 13px;
+    font-weight: 600;
+
+    margin: 10px;
+}
+
+#primary_content .people_item {
+    margin-top: 10px;
+}
+
+#primary_content .photo {
+    width: 154px;
+    height: 200px;
+
+    margin-left: 20px;
+}
+
 #primary_content .people_content {
     display: inline;
     float: right;
 
-    width:394px;
+    width:420px;
 
-    font-size: 12px;
+    font-size: 13px;
 }
 
-#subtitle {
-    font-size: 14px;
-    margin-left: 10px;
+#primary_content .people_content .people_content_name {
+    color: #72af2c;
+    font-weight: 600;
+}
+
+#primary_content .people_content .people_content_title {
+    font-size: 13px;
+}
+
+#primary_content .people_content strong {
+    display: inline;
+}
+
+#primary_content .people_content .people_content_position {
+    display: inline;
+}
+
+#primary_content .people_content .people_content_homepage {
+    text-decoration: none;
+    color: #000000;
+}
+
+#primary_content .people_content .people_content_interest {
+    display: inline;
 }
