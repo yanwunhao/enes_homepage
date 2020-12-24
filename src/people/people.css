@@ -1,0 +1,26 @@
+#primary_content
+{
+    width: 650px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 1px;
+    border-style: solid;
+    border-color: #c1c1c1;
+    background-color: #ffffff;
+}
+
+#primary_content .people_content {
+    display: inline;
+    float: right;
+
+    width:394px;
+
+    font-size: 12px;
+}
+
+#subtitle {
+    font-size: 14px;
+    margin-left: 10px;
+}
