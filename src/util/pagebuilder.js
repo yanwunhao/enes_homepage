@@ -6,6 +6,22 @@ export function header_factory() {
     return element
 }
 
+export function primary_nav_factory() {
+    const element = document.createElement('ul')
+
+    element.id = 'primary_nav'
+
+    return element
+}
+
+export function primary_navItem() {
+    const element = document.createElement('li')
+
+    element.id = 'primary_nav_item'
+
+    return element
+}
+
 export function primary_content_factory() {
     const element = document.createElement('div')
 
