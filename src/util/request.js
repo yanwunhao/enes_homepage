@@ -16,10 +16,17 @@ export function get_administrative_list() {
     return request
 }
 
-export function get_individual_details(usr_id) {
+export function get_individual_catalog(usr_id) {
     const request = axios({
         url: './data/individuals/' + usr_id + '/catalog.csv'
     })
+
+    return request
+}
+
+export function get_activities_details_asyncxhr(usr_id) {
+    const request = new XMLHttpRequest()
+    request.open('GET', './data/individuals/' + usr_id + '/content/activities.json', false)
 
     return request
 }

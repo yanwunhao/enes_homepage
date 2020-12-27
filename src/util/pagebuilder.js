@@ -14,10 +14,12 @@ export function primary_nav_factory() {
     return element
 }
 
-export function primary_navItem() {
+export function primary_navItem_factory(content) {
     const element = document.createElement('li')
 
-    element.id = 'primary_nav_item'
+    element.innerText = content
+
+    element.className = 'primary_nav_item'
 
     return element
 }
@@ -89,10 +91,28 @@ export function paragraph_factory(content, class_name) {
     return title
 }
 
+export function ul_factory(class_name) {
+    const ul = document.createElement('ul')
+
+    ul.className = class_name
+
+    return ul
+}
+
+export function li_factory(content, class_name) {
+    const li = document.createElement('li')
+
+    li.innerText = content
+
+    li.className = class_name
+
+    return li
+}
+
 export function hyperlink_factory(content, url, class_name) {
     const hyperlink = document.createElement('a')
 
-    hyperlink.innerHTML = content
+    hyperlink.innerText = content
 
     hyperlink.href = url
 
