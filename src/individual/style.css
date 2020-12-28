@@ -26,7 +26,6 @@
 #primary_content {
     display: inline-block;
     width: 650px;
-    height: 200px;
     
     margin-top: 10px;
     margin-left: 10px;
@@ -68,4 +67,9 @@
     display: list-item;
     font-size: 10px;
     margin-bottom: 10px;
+}
+
+#primary_content .list .item a{
+    text-decoration: none;
+    color: #000;
 }

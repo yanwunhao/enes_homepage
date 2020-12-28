@@ -24,6 +24,13 @@ export function get_individual_catalog(usr_id) {
     return request
 }
 
+export function get_publications_details_asyncxhr(usr_id) {
+    const request = new XMLHttpRequest()
+    request.open('GET', './data/individuals/' + usr_id + '/content/publications.json', false)
+
+    return request
+}
+
 export function get_activities_details_asyncxhr(usr_id) {
     const request = new XMLHttpRequest()
     request.open('GET', './data/individuals/' + usr_id + '/content/activities.json', false)

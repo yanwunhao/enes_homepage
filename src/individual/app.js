@@ -50,6 +50,10 @@ catalog_request.then(response => {
         item.addEventListener('click', function () {
             document.getElementsByClassName('maintitle')[0].innerHTML = catalog[i]
 
+            console.log(document.getElementById('primary_content'))
+            document.getElementById('primary_content').innerHTML = ''
+            primary_content.appendChild(pb.paragraph_factory(catalog[i], 'maintitle'))
+
             const content = enes_event_listener(id, catalog[i])
 
             content.forEach(element => { primary_content.appendChild(element) })

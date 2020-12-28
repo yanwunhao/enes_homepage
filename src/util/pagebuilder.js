@@ -102,7 +102,7 @@ export function ul_factory(class_name) {
 export function li_factory(content, class_name) {
     const li = document.createElement('li')
 
-    li.innerText = content
+    li.innerHTML = content
 
     li.className = class_name
 
