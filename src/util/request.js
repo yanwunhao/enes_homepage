@@ -37,3 +37,10 @@ export function get_activities_details_asyncxhr(usr_id) {
 
     return request
 }
+
+export function get_teaching_details_asyncxhr(usr_id) {
+    const request = new XMLHttpRequest()
+    request.open('GET', './data/individuals/' + usr_id + '/content/teaching.json', false)
+
+    return request
+}
