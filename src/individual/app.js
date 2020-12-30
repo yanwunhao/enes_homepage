@@ -9,7 +9,7 @@ import * as pb from '../util/pagebuilder'
 
 import { get_individual_catalog } from '../util/request'
 
-import { enes_event_listener } from './util'
+import { enes_event_listener } from './event_listener'
 
 // Set up header
 const header = pb.header_factory()
