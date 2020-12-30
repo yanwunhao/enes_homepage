@@ -44,3 +44,10 @@ export function get_teaching_details_asyncxhr(usr_id) {
 
     return request
 }
+
+export function get_awards_details_asyncxhr(usr_id) {
+    const request = new XMLHttpRequest()
+    request.open('GET', './data/individuals/' + usr_id + '/content/awards.json', false)
+
+    return request
+}
