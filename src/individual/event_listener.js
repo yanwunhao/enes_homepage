@@ -52,6 +52,9 @@ export function enes_event_listener(id, event_name) {
             return page_content
         }
     }
+    else if (event_name === 'Supervision') {
+        return 'People'
+    }
     else if (event_name === 'Teaching') {
         const request = get_teaching_details_asyncxhr(id)
         request.send(null)

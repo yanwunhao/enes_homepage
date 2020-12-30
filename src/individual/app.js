@@ -55,6 +55,10 @@ catalog_request.then(response => {
 
             const content = enes_event_listener(id, catalog[i])
 
+            if (typeof content === 'string') {
+                window.location.href = `./${content}.html`
+            }
+
             content.forEach(element => { primary_content.appendChild(element) })
         })
 
