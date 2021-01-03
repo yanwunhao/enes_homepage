@@ -84,11 +84,19 @@ export function strong_factory(content) {
 export function paragraph_factory(content, class_name) {
     const title = document.createElement('p')
 
-    title.innerText = content
+    title.innerHTML = content
 
     title.className = class_name
 
     return title
+}
+
+export function div_factory(class_name) {
+    const div = document.createElement('div')
+
+    div.className = class_name
+
+    return div
 }
 
 export function ul_factory(class_name) {

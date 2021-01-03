@@ -52,6 +52,29 @@
     text-indent:10px;
 }
 
+#primary_content .bio_intro {
+    font-size: 12px;
+    padding: 10px 20px;
+
+    border-bottom: 1px solid #c1c1c1;
+}
+
+#primary_content .bio_exp {
+    text-align: center;
+
+    padding: 20px 0px;
+}
+
+#primary_content .bio_exp .bio_exp_details {
+    display: inline-block;
+    margin-left: 20px;
+
+    vertical-align:top;
+    text-align: left;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
 #primary_content .list_title {
     font-size: 12px;
     font-weight: 600;

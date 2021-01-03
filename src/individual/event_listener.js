@@ -1,4 +1,5 @@
 import {
+    get_biography_details_asyncxhr,
     get_publications_details_asyncxhr, get_activities_details_asyncxhr,
     get_teaching_details_asyncxhr, get_awards_details_asyncxhr
 } from '../util/request'
@@ -6,7 +7,40 @@ import {
 import * as pb from '../util/pagebuilder'
 
 export function enes_event_listener(id, event_name) {
-    if (event_name === 'Publications') {
+    if (event_name === 'Biography') {
+        const request = get_biography_details_asyncxhr(id)
+        request.send(null)
+        if (request.status === 200) {
+            const data = JSON.parse(request.responseText)
+
+            const page_content = []
+
+            page_content.push(pb.paragraph_factory(data.intro, 'bio_intro'))
+
+            data.experiences.forEach(exp => {
+                const exp_div = pb.div_factory("bio_exp")
+
+                const logo = document.createElement('img')
+                logo.src = './data/individuals/' + id + '/image/' + exp.logo
+                logo.className = 'bio_exp_logo'
+                exp_div.appendChild(logo)
+
+                const exp_detail_div = pb.div_factory("bio_exp_details")
+                exp_detail_div.appendChild(pb.paragraph_factory(exp.title + ', ' + exp.time, ''))
+                if (exp.department) {
+                    exp_detail_div.appendChild(pb.paragraph_factory(exp.department, ''))
+                }
+                exp_detail_div.appendChild(pb.paragraph_factory(exp.belonging))
+                exp_detail_div.appendChild(pb.paragraph_factory(exp.address))
+                exp_div.appendChild(exp_detail_div)
+
+                page_content.push(exp_div)
+            })
+
+            return page_content
+        }
+    }
+    else if (event_name === 'Publications') {
         const request = get_publications_details_asyncxhr(id)
         request.send(null)
         if (request.status === 200) {
