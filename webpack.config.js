@@ -6,13 +6,14 @@ module.exports = {
     mode: 'development',
 
     entry: {
+        'app': './src/app.js',
         'people': './src/people/app.js',
         'individual': './src/individual/app.js'
     },
 
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'js/[name]/[name].js',
+        filename: 'js/[name]/app.js',
     },
 
     devServer: {
@@ -24,6 +25,11 @@ module.exports = {
 
     plugins: [
         // new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            chunks: ['app']
+        }),
         new HtmlWebpackPlugin({
             template: './src/people/index.html',
             filename: 'people.html',
