@@ -1,6 +1,6 @@
 import {
-    get_biography_details_asyncxhr,
-    get_publications_details_asyncxhr, get_activities_details_asyncxhr,
+    get_biography_details_asyncxhr, get_publications_details_asyncxhr,
+    get_activities_details_asyncxhr, get_invitedtalk_details_asyncxhr,
     get_teaching_details_asyncxhr, get_awards_details_asyncxhr
 } from '../util/request'
 
@@ -85,6 +85,39 @@ export function enes_event_listener(id, event_name) {
 
             return page_content
         }
+    }
+    else if (event_name === 'Invited Talk') {
+        const request = get_invitedtalk_details_asyncxhr(id)
+        request.send(null)
+        if (request.status === 200) {
+            const data = JSON.parse(request.responseText)
+
+            const ul = pb.ul_factory('list')
+
+            data.list.forEach(element => {
+                const li = pb.li_factory(element.time + ` <a href="${element.link}" 
+                style="color: #72af2c">${element.content}</a>`, 'item')
+
+                if (element.title) {
+                    li.appendChild(pb.paragraph_factory(`Title: ${element.title}`))
+                }
+                if (element.img) {
+                    const img = document.createElement('img')
+                    img.src = '/data/individuals/mxdong/image/' + element.img
+                    img.style.width = "100%"
+                    li.appendChild(img)
+                }
+
+                ul.appendChild(li)
+            })
+
+            const page_content = []
+
+            page_content.push(ul)
+
+            return page_content
+        }
+
     }
     else if (event_name === 'Supervision') {
         return 'People'

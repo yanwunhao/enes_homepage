@@ -103,7 +103,7 @@ faculty_request.then(response => {
 
             let people_item = pb.people_item_factory()
 
-            let image = pb.image_factory_by_classname('/data/img/' + item_container.id + '.jpg', 'photo')
+            let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
 
             people_item.appendChild(image)
 
