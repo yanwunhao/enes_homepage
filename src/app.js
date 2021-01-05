@@ -17,3 +17,8 @@ header.appendChild(logo)
 header.appendChild(title)
 
 document.body.appendChild(header)
+
+// Set up primary content
+const primary_content = pb.primary_content_factory()
+
+document.body.appendChild(primary_content)
