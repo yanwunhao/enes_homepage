@@ -15,3 +15,11 @@ export function get_administrative_list() {
 
     return request
 }
+
+export function get_currentstudents_list() {
+    const request = axios({
+        url: './data/list/currentstudents.csv'
+    })
+
+    return request
+}
