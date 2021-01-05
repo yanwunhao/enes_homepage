@@ -66,7 +66,7 @@ faculty_request.then(response => {
         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
         people_content.appendChild(pb.strong_factory('Homepage:'))
-        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/individual.html?id=' + item_container.id, '/individual.html?id=' + item_container.id, 'people_content_homepage'))
+        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
 
         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 

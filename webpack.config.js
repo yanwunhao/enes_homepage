@@ -6,13 +6,12 @@ module.exports = {
 
     entry: {
         'app': './src/app.js',
-        'people': './src/people/app.js',
-        'individual': './src/individual/app.js'
+        'people': './src/people/app.js'
     },
 
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'js/[name]/app.js',
+        filename: 'js/[name]/app.js'
     },
 
     devServer: {
@@ -32,11 +31,6 @@ module.exports = {
             template: './src/people/index.html',
             filename: 'people.html',
             chunks: ['people']
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/individual/index.html',
-            filename: 'individual.html',
-            chunks: ['individual']
         })
     ],
 
@@ -51,7 +45,7 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
+                type: 'asset/resource'
             }
         ]
     }
