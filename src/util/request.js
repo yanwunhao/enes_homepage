@@ -1,5 +1,13 @@
 const axios = require('axios')
 
+export function get_homepage_content() {
+    const request = axios({
+        url: './data/home/homepage.json'
+    })
+
+    return request
+}
+
 export function get_faculty_list() {
     const request = axios({
         url: './data/list/faculty.csv'

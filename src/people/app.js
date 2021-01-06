@@ -1,7 +1,7 @@
 import '../public.css'
 import '../reset.css'
 
-import './style.css'
+import '../style.css'
 
 import Logo from '../asset/muit_logo.png'
 

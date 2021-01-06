@@ -8,6 +8,7 @@
     border: 1px;
     border-style: solid;
     border-color: #c1c1c1;
+    
     background-color: #ffffff;
 }
 
@@ -30,6 +31,34 @@
     font-weight: 600;
 
     margin: 10px;
+}
+
+#primary_content .home_subtitle {
+    font-size: 16px;
+    color: #72af2c;
+
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#primary_content .news_content {
+    vertical-align: top;
+
+    font-size: 12px;
+    line-height: 20px;
+
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#primary_content .news_content .news_label {
+    display: inline-block;
+    padding: 0px 6px;
+    background-color: #66a51e;
+    border-radius: 25px;
+
+    color: #fff;
+    font-size: 10px;
 }
 
 #primary_content .people_item {
