@@ -9,6 +9,8 @@ import { get_faculty_list, get_administrative_list, get_currentstudents_list } f
 
 import * as pb from '../util/pagebuilder'
 
+import pages from '../util/router'
+
 // Set up header
 const header = pb.header_factory()
 
@@ -21,6 +23,19 @@ header.appendChild(logo)
 header.appendChild(title)
 
 document.body.appendChild(header)
+// Set up nav
+const nav = pb.nav_factory()
+
+pages.forEach(page => {
+    const a = document.createElement('a')
+    a.href = page.link
+
+    a.appendChild(pb.navItem_factory(page.name))
+
+    nav.appendChild(a)
+})
+
+document.body.appendChild(nav)
 
 // Set up primary content
 const primary_content = pb.primary_content_factory()
@@ -153,8 +168,6 @@ faculty_request.then(response => {
 
                 const reg = new RegExp('/', 'g') // replace / in csv to ,
                 item_container.interest = details[8].replace(reg, ',')
-
-                console.log(item_container)
 
                 let people_item = pb.people_item_factory()
 

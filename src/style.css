@@ -1,5 +1,36 @@
+#nav {
+    width: 160px;
+    display: inline-block;
+
+    vertical-align: top;
+
+    list-style: none;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#nav a :hover{
+    text-decoration: none;
+    color: #3D963A;
+}
+
+#nav .nav_item {
+    display: block;
+
+    padding-left: 4px;
+    font-size: 13px;
+    line-height: 26px;
+
+    border-bottom: 1px solid #c1c1c1;
+}
+
 #primary_content
 {
+    display: inline-block;
+
     width: 650px;
     margin-top: 5px;
     margin-left: auto;

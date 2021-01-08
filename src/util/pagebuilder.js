@@ -6,20 +6,20 @@ export function header_factory() {
     return element
 }
 
-export function primary_nav_factory() {
+export function nav_factory() {
     const element = document.createElement('ul')
 
-    element.id = 'primary_nav'
+    element.id = 'nav'
 
     return element
 }
 
-export function primary_navItem_factory(content) {
+export function navItem_factory(content) {
     const element = document.createElement('li')
 
     element.innerText = content
 
-    element.className = 'primary_nav_item'
+    element.className = 'nav_item'
 
     return element
 }
