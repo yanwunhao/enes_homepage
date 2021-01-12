@@ -11,12 +11,16 @@ body{
 #header
 {   
     margin-top: 3px;
-    border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
     height: 80px;
     width: 100%;
     line-height: 80px;
-    text-align: center;
+}
+
+.top_border
+{
+    border-bottom: 1px solid #CCC;
+    margin-left: 170px;
 }
 
 #header #muit_logo {
@@ -30,4 +34,54 @@ body{
     display: inline;
     font-weight: 600;
     margin-left: 20px;
+    font-size: 1.17em;
+}
+
+#nav {
+    width: 160px;
+    margin-top: 2px;
+    display: inline-block;
+
+    vertical-align: top;
+
+    list-style: none;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#nav a :hover{
+    text-decoration: none;
+    color: #3D963A;
+}
+
+#nav .nav_item {
+    display: block;
+
+    padding-left: 4px;
+    font-size: 13px;
+    line-height: 26px;
+
+    border-bottom: 1px solid #c1c1c1;
+}
+
+#main {
+    display: inline-block;
+    width: 660px;
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+#main .maintitle {
+    display: block;
+    background-color: #3D963A;
+    color: #ffffff;
+
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 400;
+    text-indent:10px;
 }

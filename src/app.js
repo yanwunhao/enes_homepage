@@ -14,11 +14,17 @@ import pages from './util/router'
 // Set up header
 const header = pb.header_factory()
 
+const top_border = pb.div_factory('top_border')
+header.appendChild(top_border)
+
 const title = pb.paragraph_factory('Welcome to Emerging Networks and Systems Laboratory (ENeS)', 'title')
 
 const logo = pb.image_factory_by_id(Logo, 'muit_logo')
 
-header.appendChild(logo)
+const a_logo = pb.hyperlink_factory('', 'http://www.muroran-it.ac.jp/en/', '')
+a_logo.appendChild(logo)
+
+header.appendChild(a_logo)
 
 header.appendChild(title)
 
@@ -39,9 +45,11 @@ pages.forEach(page => {
 document.body.appendChild(nav)
 
 // Set up primary content
+const main = pb.main_factory()
+
 const primary_content = pb.primary_content_factory()
 
-primary_content.appendChild(pb.paragraph_factory('Home', 'maintitle'))
+main.appendChild(pb.paragraph_factory('Home', 'maintitle'))
 
 const get_content_request = get_homepage_content()
 
@@ -78,4 +86,6 @@ get_content_request.then(response => {
     })
 })
 
-document.body.appendChild(primary_content)
+main.appendChild(primary_content)
+
+document.body.appendChild(main)

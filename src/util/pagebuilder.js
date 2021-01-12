@@ -6,6 +6,14 @@ export function header_factory() {
     return element
 }
 
+export function main_factory() {
+    const element = document.createElement('div')
+
+    element.id = 'main'
+
+    return element
+}
+
 export function nav_factory() {
     const element = document.createElement('ul')
 
