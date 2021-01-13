@@ -29,6 +29,16 @@ body{
     vertical-align: middle;
 }
 
+#header .a_title {
+    color: #000;
+    text-decoration: none;
+} 
+
+#header .a_title :hover {
+    color: #3D963A;
+    cursor: pointer;
+}
+
 #header .title 
 {
     display: inline;

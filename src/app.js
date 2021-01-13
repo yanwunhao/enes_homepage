@@ -19,6 +19,9 @@ header.appendChild(top_border)
 
 const title = pb.paragraph_factory('Welcome to Emerging Networks and Systems Laboratory (ENeS)', 'title')
 
+const a_title = pb.hyperlink_factory('', './indx.html', 'a_title')
+a_title.appendChild(title)
+
 const logo = pb.image_factory_by_id(Logo, 'muit_logo')
 
 const a_logo = pb.hyperlink_factory('', 'http://www.muroran-it.ac.jp/en/', '')
@@ -26,7 +29,7 @@ a_logo.appendChild(logo)
 
 header.appendChild(a_logo)
 
-header.appendChild(title)
+header.appendChild(a_title)
 
 document.body.appendChild(header)
 

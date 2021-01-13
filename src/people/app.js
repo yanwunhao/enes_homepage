@@ -19,6 +19,9 @@ header.appendChild(top_border)
 
 const title = pb.paragraph_factory('Welcome to Emerging Networks and Systems Laboratory (ENeS)', 'title')
 
+const a_title = pb.hyperlink_factory('', './indx.html', 'a_title')
+a_title.appendChild(title)
+
 const logo = pb.image_factory_by_id(Logo, 'muit_logo')
 
 const a_logo = pb.hyperlink_factory('', 'http://www.muroran-it.ac.jp/en/', '')
@@ -26,7 +29,7 @@ a_logo.appendChild(logo)
 
 header.appendChild(a_logo)
 
-header.appendChild(title)
+header.appendChild(a_title)
 
 document.body.appendChild(header)
 
@@ -70,7 +73,7 @@ faculty_request.then(response => {
         item_container.email = details[4]
 
         const reg = new RegExp('/', 'g') // replace / in csv to ,
-        item_container.interest = details[5].replace(reg, ',')
+        item_container.interest = details[5].replace(reg, ', ')
 
         let people_item = pb.people_item_factory()
 
@@ -176,7 +179,7 @@ faculty_request.then(response => {
                 item_container.homepage = details[7]
 
                 const reg = new RegExp('/', 'g') // replace / in csv to ,
-                item_container.interest = details[8].replace(reg, ',')
+                item_container.interest = details[8].replace(reg, ', ')
 
                 let people_item = pb.people_item_factory()
 
