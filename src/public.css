@@ -24,9 +24,11 @@ body{
 }
 
 #header #muit_logo {
-    width: 160px;
+    width: 161px;
     height: 64px;
-    vertical-align: middle;
+    
+    margin-top: 4px;
+    margin-left: 2px;
 }
 
 #header .a_title {
@@ -41,10 +43,13 @@ body{
 
 #header .title 
 {
-    display: inline;
+    display: inline-block;
     font-weight: 600;
-    margin-left: 20px;
+    margin-left: 18px;
     font-size: 1.17em;
+    vertical-align: top;
+
+    transform: translate(6px, -6px);
 }
 
 #nav {

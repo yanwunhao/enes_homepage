@@ -88,6 +88,10 @@
     color: #000000;
 }
 
+#primary_content .people_content .people_content_homepage:hover {
+    color: #72af2c;
+}
+
 #primary_content .people_content .people_content_email {
     display: inline;
 }
