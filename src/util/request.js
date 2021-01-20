@@ -31,3 +31,11 @@ export function get_currentstudents_list() {
 
     return request
 }
+
+export function get_video_catalog() {
+    const request = axios({
+        url: './data/video/catalog.csv'
+    })
+
+    return request
+}

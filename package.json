@@ -15,7 +15,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
     "less-loader": "^7.1.0",

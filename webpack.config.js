@@ -6,12 +6,13 @@ module.exports = {
 
     entry: {
         'app': './src/app.js',
-        'people': './src/people/app.js'
+        'people': './src/people/app.js',
+        'video': './src/video/app.js'
     },
 
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'js/[name]/app.js'
+        filename: './[name].js'
     },
 
     devServer: {
@@ -31,6 +32,11 @@ module.exports = {
             template: './src/people/index.html',
             filename: 'people.html',
             chunks: ['people']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/video/index.html',
+            filename: 'video.html',
+            chunks: ['video']
         })
     ],
 
