@@ -11,6 +11,8 @@ import { get_homepage_content } from './util/request'
 
 import pages from './util/router'
 
+import imageViewer from './componnent/imageviewer'
+
 // Set up header
 const header = pb.header_factory()
 
@@ -78,16 +80,17 @@ get_content_request.then(response => {
         primary_content.appendChild(p)
 
         news.images.forEach(img => {
-            const a = document.createElement('a')
-            a.href = './data/home/images/' + img
-
             const image = document.createElement('img')
             image.src = './data/home/images/' + img
             image.style.width = '96%'
             image.style.marginLeft = '2%'
 
-            a.appendChild(image)
-            primary_content.appendChild(a)
+            image.addEventListener('click', () => {
+                imageViewer.style.display = 'block'
+                imageViewer.changeImgSrc('./data/home/images/' + img)
+            })
+
+            primary_content.appendChild(image)
         })
     })
 })
@@ -95,3 +98,5 @@ get_content_request.then(response => {
 main.appendChild(primary_content)
 
 document.body.appendChild(main)
+
+document.body.appendChild(imageViewer)
