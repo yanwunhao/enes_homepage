@@ -11,6 +11,12 @@ import * as pb from '../util/pagebuilder'
 
 import pages from '../util/router'
 
+
+// Set up body
+const body_content = pb.body_content_factory()
+document.body.appendChild(body_content)
+
+
 // Set up header
 const header = pb.header_factory()
 
@@ -31,7 +37,7 @@ header.appendChild(a_logo)
 
 header.appendChild(a_title)
 
-document.body.appendChild(header)
+body_content.appendChild(header)
 
 // Set up nav
 const nav = pb.nav_factory()
@@ -45,7 +51,7 @@ pages.forEach(page => {
     nav.appendChild(a)
 })
 
-document.body.appendChild(nav)
+body_content.appendChild(nav)
 
 // Set up primary content
 const main = pb.main_factory()
@@ -236,4 +242,4 @@ faculty_request.then(response => {
 })
 main.appendChild(primary_content)
 
-document.body.appendChild(main)
+body_content.appendChild(main)

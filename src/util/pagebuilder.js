@@ -1,3 +1,11 @@
+export function body_content_factory() {
+    const element = document.createElement('div')
+
+    element.id = 'body_content'
+
+    return element
+}
+
 export function header_factory() {
     const element = document.createElement('div')
 

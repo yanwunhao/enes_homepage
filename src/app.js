@@ -12,6 +12,28 @@ import { get_homepage_content } from './util/request'
 import pages from './util/router'
 
 import imageViewer from './componnent/imageviewer'
+import cover from './componnent/cover'
+
+// Set up global plugin
+document.body.appendChild(imageViewer)
+imageViewer.style.display = 'none'
+
+document.body.appendChild(cover)
+cover.style.display = 'none'
+
+cover.addEventListener('click', () => {
+    imageViewer.style.display = 'none'
+    cover.style.display = 'none'
+})
+
+imageViewer.addEventListener('click', () => {
+    imageViewer.style.display = 'none'
+    cover.style.display = 'none'
+})
+
+// Set up body
+const body_content = pb.body_content_factory()
+document.body.appendChild(body_content)
 
 // Set up header
 const header = pb.header_factory()
@@ -33,7 +55,7 @@ header.appendChild(a_logo)
 
 header.appendChild(a_title)
 
-document.body.appendChild(header)
+body_content.appendChild(header)
 
 // Set up nav
 const nav = pb.nav_factory()
@@ -47,7 +69,7 @@ pages.forEach(page => {
     nav.appendChild(a)
 })
 
-document.body.appendChild(nav)
+body_content.appendChild(nav)
 
 // Set up primary content
 const main = pb.main_factory()
@@ -86,6 +108,8 @@ get_content_request.then(response => {
             image.style.marginLeft = '2%'
 
             image.addEventListener('click', () => {
+                cover.style.display = 'block'
+
                 imageViewer.style.display = 'block'
                 imageViewer.changeImgSrc('./data/home/images/' + img)
             })
@@ -97,6 +121,4 @@ get_content_request.then(response => {
 
 main.appendChild(primary_content)
 
-document.body.appendChild(main)
-
-document.body.appendChild(imageViewer)
+body_content.appendChild(main)
