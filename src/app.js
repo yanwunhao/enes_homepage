@@ -78,13 +78,16 @@ get_content_request.then(response => {
         primary_content.appendChild(p)
 
         news.images.forEach(img => {
-            const image = document.createElement('img')
+            const a = document.createElement('a')
+            a.href = './data/home/images/' + img
 
+            const image = document.createElement('img')
             image.src = './data/home/images/' + img
             image.style.width = '96%'
             image.style.marginLeft = '2%'
 
-            primary_content.appendChild(image)
+            a.appendChild(image)
+            primary_content.appendChild(a)
         })
     })
 })
