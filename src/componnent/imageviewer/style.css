@@ -8,26 +8,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 1300px;
-    height: 800px;
+    width: 80vw;
+    height: 80vh;
 
     overflow-x: hidden;
     overflow-y: scroll;
 
     z-index: 101;
 }
-/* 
-#closeBtn {
-    display: block;
-    height: 50px;
-
-    margin-top: 6px;
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: 700;
-
-    cursor: pointer;
-} */
 
 #imageviewer_message {
     display: block;

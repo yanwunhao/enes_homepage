@@ -3,6 +3,7 @@ const path = require('path')
 
 module.exports = {
     mode: 'development',
+    // mode: 'production',
 
     entry: {
         'app': './src/app.js',
@@ -12,7 +13,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: './[name].js'
+        filename: './js/[name].js'
     },
 
     devServer: {
@@ -51,7 +52,28 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name][hash:5].[ext]',
+                            limit: 10 * 1024,
+                            outputPath: 'img'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                ]
             }
         ]
     }
