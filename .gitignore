@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Videos in example_data
+src/example_data/video/source
