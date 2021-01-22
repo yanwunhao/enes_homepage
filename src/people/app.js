@@ -5,7 +5,7 @@ import '../style.css'
 
 import Logo from '../asset/muit_logo.png'
 
-import { get_faculty_list, get_administrative_list, get_currentstudents_list } from '../util/request'
+import { get_faculty_list, get_administrative_list, get_currentstudents_list, get_alumni_list } from '../util/request'
 
 import * as pb from '../util/pagebuilder'
 
@@ -237,6 +237,83 @@ faculty_request.then(response => {
 
                 primary_content.appendChild(people_item)
             }
+
+            primary_content.appendChild(pb.paragraph_factory('Alumni:', 'subtitle'))
+
+            const alumni_request = get_alumni_list()
+
+            alumni_request.then(response => {
+                let datalist = response.data.split('\r\n')
+
+                for (let i = 1; i < datalist.length; i++) {
+                    const details = datalist[i].split(',')
+
+                    let item_container = {}
+
+                    item_container.id = details[0]
+                    item_container.from = details[1]
+                    item_container.visitperiod = details[2]
+                    item_container.name = details[3]
+                    item_container.remark = details[4].split('/')
+                    item_container.title = details[5]
+                    item_container.email = details[6]
+                    item_container.homepage = details[7]
+
+                    const reg = new RegExp('/', 'g') // replace / in csv to ,
+                    item_container.interest = details[8].replace(reg, ', ')
+
+                    let people_item = pb.people_item_factory()
+
+                    let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
+
+                    people_item.appendChild(image)
+
+                    let people_content = pb.people_content_factory()
+
+                    people_content.appendChild(pb.paragraph_factory(item_container.name, 'people_content_name'))
+
+                    item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
+
+                    people_content.appendChild(pb.strong_factory('Title:'))
+                    people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
+                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                    if (item_container.from) {
+                        people_content.style.lineHeight = '20px'
+                        people_content.appendChild(pb.strong_factory('From:'))
+                        people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
+                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    }
+
+                    people_content.appendChild(pb.strong_factory('Email:'))
+                    people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
+                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                    if (item_container.homepage && item_container.homepage !== 'none') {
+                        people_content.appendChild(pb.strong_factory('Homepage:'))
+                        people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
+                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    } else if ('none' !== item_container.homepage) {
+                        people_content.appendChild(pb.strong_factory('Homepage:'))
+                        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
+                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    }
+
+                    people_content.appendChild(pb.strong_factory('Research Interests:'))
+                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    people_content.appendChild(pb.paragraph_factory(item_container.interest, 'people_content_interest'))
+                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                    if (item_container.visitperiod) {
+                        people_content.appendChild(pb.strong_factory('Visiting Period: ' + item_container.visitperiod))
+                    }
+
+
+                    people_item.appendChild(people_content)
+
+                    primary_content.appendChild(people_item)
+                }
+            })
         })
     })
 })

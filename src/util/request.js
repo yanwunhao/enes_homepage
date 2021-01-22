@@ -32,6 +32,14 @@ export function get_currentstudents_list() {
     return request
 }
 
+export function get_alumni_list() {
+    const request = axios({
+        url: './data/list/alumni.csv'
+    })
+
+    return request
+}
+
 export function get_video_catalog() {
     const request = axios({
         url: './data/video/catalog.csv'
