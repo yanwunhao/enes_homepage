@@ -70,6 +70,9 @@ faculty_request.then(response => {
     let item_container = {}
 
     for (let i = 1; i < datalist.length; i++) {
+        if (!datalist[i]) {
+            continue
+        }
         const details = datalist[i].split(',')
 
         item_container.id = details[0]
@@ -83,7 +86,7 @@ faculty_request.then(response => {
 
         let people_item = pb.people_item_factory()
 
-        let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
+        let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
 
         people_item.appendChild(image)
 
@@ -110,7 +113,7 @@ faculty_request.then(response => {
 
         } else {
             people_content.appendChild(pb.strong_factory('Homepage:'))
-            people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
+            people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
         }
 
@@ -133,6 +136,9 @@ faculty_request.then(response => {
         let item_container = {}
 
         for (let i = 1; i < datalist.length; i++) {
+            if (!datalist[i]) {
+                continue
+            }
             const details = datalist[i].split(',')
 
             item_container.id = details[0]
@@ -142,7 +148,7 @@ faculty_request.then(response => {
 
             let people_item = pb.people_item_factory()
 
-            let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
+            let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
 
             people_item.appendChild(image)
 
@@ -171,31 +177,49 @@ faculty_request.then(response => {
             let datalist = response.data.split('\r\n')
 
             for (let i = 1; i < datalist.length; i++) {
+                if (!datalist[i]) {
+                    continue
+                }
                 const details = datalist[i].split(',')
 
                 let item_container = {}
 
                 item_container.id = details[0]
                 item_container.from = details[1]
-                item_container.visitperiod = details[2]
-                item_container.name = details[3]
-                item_container.remark = details[4].split('/')
-                item_container.title = details[5]
-                item_container.email = details[6]
-                item_container.homepage = details[7]
+                item_container.fromURL = details[2]
+                item_container.visitperiod = details[3]
+                item_container.name = details[4]
+                item_container.remark = details[5].split('/')
+                item_container.title = details[6]
+                item_container.email = details[7]
+                item_container.homepage = details[8]
 
                 const reg = new RegExp('/', 'g') // replace / in csv to ,
-                item_container.interest = details[8].replace(reg, ', ')
+                item_container.interest = details[9].replace(reg, ', ')
 
                 let people_item = pb.people_item_factory()
 
-                let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
+                let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
 
                 people_item.appendChild(image)
 
                 let people_content = pb.people_content_factory()
 
-                people_content.appendChild(pb.paragraph_factory(item_container.name, 'people_content_name'))
+                const personname = pb.paragraph_factory(item_container.name, 'people_content_name')
+                if (item_container.from) {
+                    const a = document.createElement('a')
+                    a.href = item_container.fromURL
+
+                    const logo = document.createElement('img')
+                    logo.src = './data/list/logo/' + item_container.from.replace('/\s+/g', ' ').toLowerCase() + '.png'
+                    logo.style.width = '16px'
+                    logo.style.verticalAlign = 'Middle'
+                    logo.style.marginLeft = '6px'
+
+                    a.appendChild(logo)
+                    personname.appendChild(a)
+                }
+                people_content.appendChild(personname)
 
                 item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
@@ -220,7 +244,7 @@ faculty_request.then(response => {
                     people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                 } else if ('none' !== item_container.homepage) {
                     people_content.appendChild(pb.strong_factory('Homepage:'))
-                    people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
+                    people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
                     people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                 }
 
@@ -246,31 +270,49 @@ faculty_request.then(response => {
                 let datalist = response.data.split('\r\n')
 
                 for (let i = 1; i < datalist.length; i++) {
+                    if (!datalist[i]) {
+                        continue
+                    }
                     const details = datalist[i].split(',')
 
                     let item_container = {}
 
                     item_container.id = details[0]
                     item_container.from = details[1]
-                    item_container.visitperiod = details[2]
-                    item_container.name = details[3]
-                    item_container.remark = details[4].split('/')
-                    item_container.title = details[5]
-                    item_container.email = details[6]
-                    item_container.homepage = details[7]
+                    item_container.fromURL = details[2]
+                    item_container.visitperiod = details[3]
+                    item_container.name = details[4]
+                    item_container.remark = details[5].split('/')
+                    item_container.title = details[6]
+                    item_container.email = details[7]
+                    item_container.homepage = details[8]
 
                     const reg = new RegExp('/', 'g') // replace / in csv to ,
-                    item_container.interest = details[8].replace(reg, ', ')
+                    item_container.interest = details[9].replace(reg, ', ')
 
                     let people_item = pb.people_item_factory()
 
-                    let image = pb.image_factory_by_classname('/data/list/img/' + item_container.id + '.jpg', 'photo')
+                    let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
 
                     people_item.appendChild(image)
 
                     let people_content = pb.people_content_factory()
 
-                    people_content.appendChild(pb.paragraph_factory(item_container.name, 'people_content_name'))
+                    const personname = pb.paragraph_factory(item_container.name, 'people_content_name')
+                    if (item_container.from) {
+                        const a = document.createElement('a')
+                        a.href = item_container.fromURL
+
+                        const logo = document.createElement('img')
+                        logo.src = './data/list/logo/' + item_container.from.replace('/\s+/g', ' ').toLowerCase() + '.png'
+                        logo.style.width = '16px'
+                        logo.style.verticalAlign = 'Middle'
+                        logo.style.marginLeft = '6px'
+
+                        a.appendChild(logo)
+                        personname.appendChild(a)
+                    }
+                    people_content.appendChild(personname)
 
                     item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
@@ -295,7 +337,7 @@ faculty_request.then(response => {
                         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                     } else if ('none' !== item_container.homepage) {
                         people_content.appendChild(pb.strong_factory('Homepage:'))
-                        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, '/~' + item_container.id, 'people_content_homepage'))
+                        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
                         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                     }
 
