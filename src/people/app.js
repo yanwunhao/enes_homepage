@@ -269,6 +269,8 @@ faculty_request.then(response => {
             alumni_request.then(response => {
                 let datalist = response.data.split('\r\n')
 
+                const people_object_list = []
+
                 for (let i = 1; i < datalist.length; i++) {
                     if (!datalist[i]) {
                         continue
@@ -287,73 +289,213 @@ faculty_request.then(response => {
                     item_container.email = details[7]
                     item_container.homepage = details[8]
 
+                    item_container.yearCatagory = details[9]
+                    item_container.isImportant = details[10]
+
                     const reg = new RegExp('/', 'g') // replace / in csv to ,
-                    item_container.interest = details[9].replace(reg, ', ')
+                    item_container.interest = details[11].replace(reg, ', ')
 
-                    let people_item = pb.people_item_factory()
+                    people_object_list.push(item_container)
+                }
 
-                    let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
+                const people_object_important = new Object()
+                const people_object_unimportant = new Object()
 
-                    people_item.appendChild(image)
+                // divide people by YearCatagories and Importance
+                people_object_list.forEach(person => {
+                    if (person.isImportant === '1') {
+                        if (!people_object_important[person.yearCatagory]) {
+                            people_object_important[person.yearCatagory] = []
+                        }
 
-                    let people_content = pb.people_content_factory()
+                        people_object_important[person.yearCatagory].push(person)
 
-                    const personname = pb.paragraph_factory(item_container.name, 'people_content_name')
-                    if (item_container.from) {
-                        const a = document.createElement('a')
-                        a.href = item_container.fromURL
+                    } else {
+                        if (!people_object_unimportant[person.yearCatagory]) {
+                            people_object_unimportant[person.yearCatagory] = []
+                        }
 
-                        const logo = document.createElement('img')
-                        logo.src = './data/list/logo/' + item_container.from.replace('/\s+/g', ' ').toLowerCase() + '.png'
-                        logo.style.width = '16px'
-                        logo.style.verticalAlign = 'Middle'
-                        logo.style.marginLeft = '6px'
+                        people_object_unimportant[person.yearCatagory].push(person)
 
-                        a.appendChild(logo)
-                        personname.appendChild(a)
                     }
-                    people_content.appendChild(personname)
+                })
 
-                    item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
-
-                    people_content.appendChild(pb.strong_factory('Title:'))
-                    people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
-                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
-
-                    if (item_container.from) {
-                        people_content.style.lineHeight = '20px'
-                        people_content.appendChild(pb.strong_factory('From:'))
-                        people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
-                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                // append people into page
+                for (let i = new Date().getFullYear(); i > 2013; i--) {
+                    // skip the year with no person
+                    if ((!people_object_important[i]) && (!people_object_unimportant[i])) {
+                        continue
                     }
 
-                    people_content.appendChild(pb.strong_factory('Email:'))
-                    people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
-                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    const div = document.createElement('div')
+                    div.id = `alumni_content_${i}`
 
-                    if (item_container.homepage && item_container.homepage !== 'none') {
-                        people_content.appendChild(pb.strong_factory('Homepage:'))
-                        people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
-                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
-                    } else if ('none' !== item_container.homepage) {
-                        people_content.appendChild(pb.strong_factory('Homepage:'))
-                        people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
-                        people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    div.appendChild(pb.paragraph_factory(i, 'alumni_year'))
+
+                    const important_div = document.createElement('div')
+                    important_div.id = `alumni_content_${i}_important`
+
+                    // append important people to a specific div
+                    if (people_object_important[i]) {
+                        people_object_important[i].forEach(item_container => {
+                            let people_item = pb.people_item_factory()
+
+                            let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
+
+                            people_item.appendChild(image)
+
+                            let people_content = pb.people_content_factory()
+
+                            const personname = pb.paragraph_factory(item_container.name, 'people_content_name')
+                            if (item_container.from) {
+                                const a = document.createElement('a')
+                                a.href = item_container.fromURL
+
+                                const logo = document.createElement('img')
+                                logo.src = './data/list/logo/' + item_container.from.replace('/\s+/g', ' ').toLowerCase() + '.png'
+                                logo.style.width = '16px'
+                                logo.style.verticalAlign = 'Middle'
+                                logo.style.marginLeft = '6px'
+
+                                a.appendChild(logo)
+                                personname.appendChild(a)
+                            }
+                            people_content.appendChild(personname)
+
+                            item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
+
+                            people_content.appendChild(pb.strong_factory('Title:'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.from) {
+                                people_content.style.lineHeight = '20px'
+                                people_content.appendChild(pb.strong_factory('From:'))
+                                people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            }
+
+                            people_content.appendChild(pb.strong_factory('Email:'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.homepage && item_container.homepage !== 'none') {
+                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            } else if ('none' !== item_container.homepage) {
+                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            }
+
+                            people_content.appendChild(pb.strong_factory('Research Interests:'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.interest, 'people_content_interest'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.visitperiod) {
+                                people_content.appendChild(pb.strong_factory('Visiting Period: ' + item_container.visitperiod))
+                            }
+
+                            people_item.appendChild(people_content)
+
+                            important_div.appendChild(people_item)
+                        })
                     }
 
-                    people_content.appendChild(pb.strong_factory('Research Interests:'))
-                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
-                    people_content.appendChild(pb.paragraph_factory(item_container.interest, 'people_content_interest'))
-                    people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                    // append other people to another div
+                    const unimportant_div = document.createElement('div')
+                    unimportant_div.id = `alumni_content_${i}_unimportant`
 
-                    if (item_container.visitperiod) {
-                        people_content.appendChild(pb.strong_factory('Visiting Period: ' + item_container.visitperiod))
+                    if (people_object_unimportant[i]) {
+                        people_object_unimportant[i].forEach(item_container => {
+                            let people_item = pb.people_item_factory()
+
+                            let image = pb.image_factory_by_classname('./data/list/img/' + item_container.id + '.jpg', 'photo')
+
+                            people_item.appendChild(image)
+
+                            let people_content = pb.people_content_factory()
+
+                            const personname = pb.paragraph_factory(item_container.name, 'people_content_name')
+                            if (item_container.from) {
+                                const a = document.createElement('a')
+                                a.href = item_container.fromURL
+
+                                const logo = document.createElement('img')
+                                logo.src = './data/list/logo/' + item_container.from.replace('/\s+/g', ' ').toLowerCase() + '.png'
+                                logo.style.width = '16px'
+                                logo.style.verticalAlign = 'Middle'
+                                logo.style.marginLeft = '6px'
+
+                                a.appendChild(logo)
+                                personname.appendChild(a)
+                            }
+                            people_content.appendChild(personname)
+
+                            item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
+
+                            people_content.appendChild(pb.strong_factory('Title:'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.from) {
+                                people_content.style.lineHeight = '20px'
+                                people_content.appendChild(pb.strong_factory('From:'))
+                                people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            }
+
+                            people_content.appendChild(pb.strong_factory('Email:'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.homepage && item_container.homepage !== 'none') {
+                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            } else if ('none' !== item_container.homepage) {
+                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
+                                people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            }
+
+                            people_content.appendChild(pb.strong_factory('Research Interests:'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+                            people_content.appendChild(pb.paragraph_factory(item_container.interest, 'people_content_interest'))
+                            people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
+
+                            if (item_container.visitperiod) {
+                                people_content.appendChild(pb.strong_factory('Visiting Period: ' + item_container.visitperiod))
+                            }
+
+                            people_item.appendChild(people_content)
+
+                            unimportant_div.appendChild(people_item)
+                        })
                     }
 
+                    div.appendChild(important_div)
 
-                    people_item.appendChild(people_content)
+                    unimportant_div.style.display = 'none'
+                    div.appendChild(unimportant_div)
 
-                    primary_content.appendChild(people_item)
+                    const show_btn = document.createElement('span')
+                    show_btn.className = 'alumni_button'
+                    show_btn.innerText = 'View More'
+                    show_btn.addEventListener('click', () => {
+                        if (unimportant_div.offsetHeight == '0') {
+                            show_btn.innerText = 'Hide Insignificants'
+                            unimportant_div.style.display = 'block'
+                        } else {
+                            show_btn.innerText = 'View More'
+                            unimportant_div.style.display = 'none'
+                        }
+                    })
+                    div.appendChild(show_btn)
+
+                    primary_content.appendChild(div)
                 }
             })
         })

@@ -99,3 +99,28 @@
 #primary_content .people_content .people_content_interest {
     display: inline;
 }
+
+#primary_content .alumni_year {
+    font-size: 10px;
+    font-weight: 600;
+
+    margin: 10px 16px;
+}
+
+#primary_content .alumni_button {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 200;
+    color: #3D963A;
+
+    max-width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#primary_content .alumni_button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
