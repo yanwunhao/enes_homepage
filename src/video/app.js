@@ -75,12 +75,6 @@ get_content_request.then(response => {
 
     research_box.appendChild(pb.paragraph_factory('Our Researches:', 'home_subtitle'))
 
-    const other_box = document.createElement('div')
-
-    other_box.appendChild(pb.paragraph_factory('Other:', 'home_subtitle'))
-
-    research_box.id = 'other_box'
-
     datalist.forEach(data => {
         const data_item = data.split(',')
         const filename = data_item[0]
@@ -102,13 +96,12 @@ get_content_request.then(response => {
         } else if (type === 'research') {
             research_box.appendChild(video)
         } else {
-            other_box.appendChild(video)
+            console.log('no catagory')
         }
     })
 
     primary_content.appendChild(activity_box)
     primary_content.appendChild(research_box)
-    primary_content.appendChild(other_box)
 })
 
 main.appendChild(primary_content)
