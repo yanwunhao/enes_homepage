@@ -130,23 +130,23 @@ faculty_request.then(response => {
 
         item_container.title.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
-        people_content.appendChild(pb.strong_factory('Position:'))
+        people_content.appendChild(pb.strong_factory('Position: '))
         people_content.appendChild(pb.paragraph_factory(item_container.position, 'people_content_position'))
 
         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
-        people_content.appendChild(pb.strong_factory('Email:'))
+        people_content.appendChild(pb.strong_factory('Email: '))
         people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
         people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
         if (item_container.homepage) {
-            people_content.appendChild(pb.strong_factory('Homepage:'))
+            people_content.appendChild(pb.strong_factory('Homepage: '))
             people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
         } else if (item_container.homepage === 'none') {
 
         } else {
-            people_content.appendChild(pb.strong_factory('Homepage:'))
+            people_content.appendChild(pb.strong_factory('Homepage: '))
             people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
         }
@@ -190,12 +190,12 @@ faculty_request.then(response => {
 
             people_content.appendChild(pb.paragraph_factory(item_container.name, 'people_content_name'))
 
-            people_content.appendChild(pb.strong_factory('title:'))
+            people_content.appendChild(pb.strong_factory('title: '))
             people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
 
             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
-            people_content.appendChild(pb.strong_factory('Email:'))
+            people_content.appendChild(pb.strong_factory('Email: '))
             people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
 
             people_item.appendChild(people_content)
@@ -257,27 +257,27 @@ faculty_request.then(response => {
 
                 item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
-                people_content.appendChild(pb.strong_factory('Title:'))
+                people_content.appendChild(pb.strong_factory('Title: '))
                 people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                 if (item_container.from) {
                     people_content.style.lineHeight = '20px'
-                    people_content.appendChild(pb.strong_factory('From:'))
+                    people_content.appendChild(pb.strong_factory('From: '))
                     people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
                     people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                 }
 
-                people_content.appendChild(pb.strong_factory('Email:'))
+                people_content.appendChild(pb.strong_factory('Email: '))
                 people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                 if (item_container.homepage && item_container.homepage !== 'none') {
-                    people_content.appendChild(pb.strong_factory('Homepage:'))
+                    people_content.appendChild(pb.strong_factory('Homepage: '))
                     people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
                     people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                 } else if ('none' !== item_container.homepage) {
-                    people_content.appendChild(pb.strong_factory('Homepage:'))
+                    people_content.appendChild(pb.strong_factory('Homepage: '))
                     people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
                     people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                 }
@@ -398,27 +398,27 @@ faculty_request.then(response => {
 
                             item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
-                            people_content.appendChild(pb.strong_factory('Title:'))
+                            people_content.appendChild(pb.strong_factory('Title: '))
                             people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
                             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                             if (item_container.from) {
                                 people_content.style.lineHeight = '20px'
-                                people_content.appendChild(pb.strong_factory('From:'))
+                                people_content.appendChild(pb.strong_factory('From: '))
                                 people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             }
 
-                            people_content.appendChild(pb.strong_factory('Email:'))
+                            people_content.appendChild(pb.strong_factory('Email: '))
                             people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
                             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                             if (item_container.homepage && item_container.homepage !== 'none') {
-                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.strong_factory('Homepage: '))
                                 people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             } else if ('none' !== item_container.homepage) {
-                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.strong_factory('Homepage: '))
                                 people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             }
@@ -470,27 +470,27 @@ faculty_request.then(response => {
 
                             item_container.remark.forEach(item => { people_content.appendChild(pb.paragraph_factory(item, 'people_content_title')) })
 
-                            people_content.appendChild(pb.strong_factory('Title:'))
+                            people_content.appendChild(pb.strong_factory('Title: '))
                             people_content.appendChild(pb.paragraph_factory(item_container.title, 'people_content_position'))
                             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                             if (item_container.from) {
                                 people_content.style.lineHeight = '20px'
-                                people_content.appendChild(pb.strong_factory('From:'))
+                                people_content.appendChild(pb.strong_factory('From: '))
                                 people_content.appendChild(pb.paragraph_factory(item_container.from, 'people_content_position'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             }
 
-                            people_content.appendChild(pb.strong_factory('Email:'))
+                            people_content.appendChild(pb.strong_factory('Email: '))
                             people_content.appendChild(pb.paragraph_factory(item_container.email, 'people_content_email'))
                             people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
 
                             if (item_container.homepage && item_container.homepage !== 'none') {
-                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.strong_factory('Homepage: '))
                                 people_content.appendChild(pb.hyperlink_factory(item_container.homepage, item_container.homepage, 'people_content_homepage'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             } else if ('none' !== item_container.homepage) {
-                                people_content.appendChild(pb.strong_factory('Homepage:'))
+                                people_content.appendChild(pb.strong_factory('Homepage: '))
                                 people_content.appendChild(pb.hyperlink_factory('www3.muroran-it.ac.jp/enes/~' + item_container.id, './~' + item_container.id, 'people_content_homepage'))
                                 people_content.appendChild(pb.paragraph_factory('', 'people_content_segment'))
                             }
