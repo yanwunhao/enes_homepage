@@ -4,10 +4,11 @@ import './reset.css'
 import './style.css'
 
 import Logo from './asset/muit_logo.png'
+import Logo_Footer from './asset/muit_logo_footer.png'
 
 import * as pb from './util/pagebuilder'
 
-import { get_homepage_content } from './util/request'
+import { get_homepage_content, get_footer_info } from './util/request'
 
 import pages from './util/router'
 
@@ -71,6 +72,39 @@ pages.forEach(page => {
 
 body_content.appendChild(nav)
 
+// Set footer info
+const footer_content = pb.footer_content_factory()
+
+const footer_request = get_footer_info()
+
+footer_request.send(null)
+
+if (footer_request.status === 200) {
+    const datalist = footer_request.responseText.split('\r\n')
+
+    const data = datalist[1].split(',')
+
+    footer_content.appendChild(pb.paragraph_factory(data[0], ''))
+    footer_content.appendChild(pb.paragraph_factory(data[1], ''))
+
+    const reg = new RegExp('/', 'g') // replace / in csv to ,
+    footer_content.appendChild(pb.paragraph_factory(data[2].replace(reg, ', '), ''))
+
+    footer_content.appendChild(pb.paragraph_factory('Email: ' + data[3], ''))
+    footer_content.appendChild(pb.paragraph_factory('Tel: ' + data[4], ''))
+    footer_content.appendChild(pb.paragraph_factory('Fax: ' + data[5], ''))
+
+    footer_content.appendChild(pb.paragraph_factory('<a href="../index.html">ENeS Lab</a> | <a href="http://www.muroran-it.ac.jp/en/link_d/d_iee.html" target="_blank">Department of IEE</a> | <a href="http://www.muroran-it.ac.jp/en/" target="_blank">Muroran IT</a>', ''))
+
+    const footer_logo = new Image()
+
+    footer_logo.src = Logo_Footer
+
+    footer_logo.id = 'footer_logo'
+
+    footer_content.appendChild(footer_logo)
+}
+
 // Set up primary content
 const main = pb.main_factory()
 
@@ -120,5 +154,6 @@ get_content_request.then(response => {
 })
 
 main.appendChild(primary_content)
+main.appendChild(footer_content)
 
 body_content.appendChild(main)

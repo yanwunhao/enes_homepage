@@ -8,6 +8,13 @@ export function get_homepage_content() {
     return request
 }
 
+export function get_footer_info() {
+    const request = new XMLHttpRequest()
+    request.open('GET', './data/footer.csv', false)
+
+    return request
+}
+
 export function get_faculty_list() {
     const request = axios({
         url: './data/list/faculty.csv'

@@ -64,6 +64,14 @@ export function people_content_factory() {
     return element
 }
 
+export function footer_content_factory() {
+    const element = document.createElement('div')
+
+    element.id = 'footer_content'
+
+    return element
+}
+
 export function image_factory_by_id(img, id) {
     const image = new Image()
     image.src = img

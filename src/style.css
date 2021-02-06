@@ -124,3 +124,29 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+#footer_content {
+    position: relative;
+
+    padding: 10px 20px;
+    border: 1px solid#c1c1c1;
+    font-size: 12px;
+}
+
+#footer_content #footer_logo {
+    width:100px;
+    height: 90px;
+    
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#footer_content a{
+    color: #72af2c;
+    text-decoration: none;
+}
+
+#footer_content a:hover{
+    text-decoration: underline;
+}
