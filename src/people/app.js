@@ -41,13 +41,22 @@ header.appendChild(a_title)
 body_content.appendChild(header)
 
 // Set up nav
+const local_page = "People"
+
 const nav = pb.nav_factory()
 
 pages.forEach(page => {
     const a = document.createElement('a')
     a.href = page.link
 
-    a.appendChild(pb.navItem_factory(page.name))
+    if (page.name === local_page) {
+        const h2_item = document.createElement('h2')
+        h2_item.innerText = page.name
+        h2_item.style.borderBottom = '1px solid #c1c1c1'
+        a.appendChild(h2_item)
+    } else {
+        a.appendChild(pb.navItem_factory(page.name))
+    }
 
     nav.appendChild(a)
 })
